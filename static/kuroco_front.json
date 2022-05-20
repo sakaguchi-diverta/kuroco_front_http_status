@@ -2,7 +2,7 @@
     "rewrites": [
         {
           "source": "/404/",
-          "destination": "/HTTP_STATUS/not_found.html"
+          "destination": "/HTTP_STATUS/non_existing_file.html"
         },
         {
           "source": ".*",
@@ -11,7 +11,7 @@
     ],
     "redirects": [
       {
-        "source": "^/HTTP_STATUS/([^/].+?)/",
+        "source": "^/HTTP_STATUS/.*",
         "destination": "/HTTP_STATUS/not_found.html"
       }
     ],
