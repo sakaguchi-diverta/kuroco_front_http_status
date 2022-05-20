@@ -5,11 +5,11 @@
           "destination": "/non_existing_file.html"
         },
         {
-          "source": "^/ERROR/.*",
+          "source": "/ERROR/.*",
           "destination": "/non_existing_file.html"
         },
         {
-          "source": ".*",
+          "source": ".+",
           "destination": "/index.html"
         }
     ],
