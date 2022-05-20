@@ -1,19 +1,20 @@
 {
     "rewrites": [
         {
-          "source": "/404/",
-          "destination": "/non_existing_file.html"
-        },
-        {
-          "source": "/ERROR/.*",
-          "destination": "/non_existing_file.html"
-        },
-        {
-          "source": ".+",
+          "source": ".*",
           "destination": "/index.html"
         }
     ],
-    "redirects": [],
+    "redirects": [
+        {
+          "source": "^/404/",
+          "destination": "status:404"
+        },
+        {
+          "source": "^/ERROR/.*",
+          "destination": "status:404"
+        }
+    ],
     "redirects_by_ie": [],
     "basic":[],
     "ip_restrictions":[],
