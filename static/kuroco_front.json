@@ -1,18 +1,18 @@
 {
     "rewrites": [
         {
-          "source": "/404/",
-          "destination": "/HTTP_STATUS/non_existing_file.html"
+          "source": "(?!/404/).*",
+          "destination": "/index.html"
         },
         {
-          "source": ".*",
-          "destination": "/index.html"
+          "source": "/404/",
+          "destination": "/HTTP_STATUS/non_existing_file.html"
         }
     ],
     "redirects": [
       {
         "source": "^/HTTP_STATUS/.*",
-        "destination": "/HTTP_STATUS/not_found.html"
+        "destination": "/HTTP_STATUS/non_existing_file.html"
       }
     ],
     "redirects_by_ie": [],
