@@ -20,7 +20,7 @@
     "ip_restrictions":[],
     "stale_while_revalidate":"86400",
     "error_page": {
-        "status404":"/ERROR/404.html"
+        "status404":"/index.html"
     },
     "inject_data": []
 }
