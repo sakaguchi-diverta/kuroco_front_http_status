@@ -18,7 +18,7 @@
     "redirects_by_ie": [],
     "proxies": [
       {
-        "source": "/files/sitemaps/(.+\.xml)",
+        "source": "/files/sitemaps/(.*)",
         "destination": "https://sakaguchi.g.kuroco-img.app/files/user/sitemaps/$1"
       }
     ],
