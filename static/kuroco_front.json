@@ -13,6 +13,10 @@
         {
           "source": "^/ERROR/.*",
           "destination": "status:404"
+        },
+        {
+          "source": "^/before1/.*",
+          "destination": "/after1/"
         }
     ],
     "redirects_by_ie": [],
