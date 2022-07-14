@@ -15,8 +15,12 @@
           "destination": "status:404"
         },
         {
-          "source": "^/before1/.*",
+          "source": "^/before1/",
           "destination": "/after1/"
+        },
+        {
+          "source": "^/before2/.*",
+          "destination": "/after2/"
         }
     ],
     "redirects_by_ie": [],
