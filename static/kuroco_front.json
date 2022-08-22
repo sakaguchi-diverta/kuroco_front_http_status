@@ -26,6 +26,11 @@
     "redirects_by_ie": [],
     "proxies": [
       {
+        "source": "/files/sitemaps/(.*)?v=(\d+)",
+        "destination": "https://sakaguchi.g.kuroco-img.app/v=$2/files/user/sitemaps/$1",
+        "max_age": 0
+      },
+      {
         "source": "/files/sitemaps/(.*)",
         "destination": "https://sakaguchi.g.kuroco-img.app/files/user/sitemaps/$1",
         "max_age": 0
