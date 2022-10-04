@@ -14,8 +14,8 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'title', name: 'description', content: '', 'data-kuroco-replace': 'title' },
-      { hid: 'description', name: 'description', content: '', 'data-kuroco-replace': 'description' },
+      { 'data-kuroco-replace': 'title', hid: 'title', name: 'description', content: '...' },
+      { 'data-kuroco-replace': 'description', hid: 'description', name: 'description', content: '...' },
       { name: 'format-detection', content: 'telephone=no' },
       { name: 'google-site-verification', content: 'Nkf0GiiZKe1Yy9ghOY9eBwoSq6s_w8BzmeSP15sUxoM' },
     ],
