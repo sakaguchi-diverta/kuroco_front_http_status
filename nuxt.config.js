@@ -16,6 +16,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
+      { name: 'google-site-verification', content: 'Nkf0GiiZKe1Yy9ghOY9eBwoSq6s_w8BzmeSP15sUxoM' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
