@@ -45,22 +45,12 @@
     "inject_data": {
         "/": [
             [
-                "title",
-                "content",
-                "Top Page Title"
-            ],
-            [
                 "description",
                 "content",
                 "Top Page Description"
             ]
         ],
         "/errpage/": [
-            [
-                "title",
-                "content",
-                "Error Page Title"
-            ],
             [
                 "description",
                 "content",
