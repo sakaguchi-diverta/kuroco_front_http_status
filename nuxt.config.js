@@ -15,12 +15,6 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        'data-kuroco-replace': 'title',
-        hid: 'title',
-        name: 'title',
-        content: 'Default Title',
-      },
-      {
         'data-kuroco-replace': 'description',
         hid: 'description',
         name: 'description',
