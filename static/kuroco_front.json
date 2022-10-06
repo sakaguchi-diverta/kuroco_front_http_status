@@ -43,16 +43,28 @@
         "status404":"/index.html"
     },
     "inject_data": {
-        "/errpage_meta/": [
+        "/": [
             [
                 "title",
                 "content",
-                "Test Title"
+                "Top Page Title"
             ],
             [
                 "description",
                 "content",
-                "Test Description"
+                "Top Page Description"
+            ]
+        ],
+        "/errpage/": [
+            [
+                "title",
+                "content",
+                "Error Page Title"
+            ],
+            [
+                "description",
+                "content",
+                "Error Page Description"
             ]
         ]
     }
