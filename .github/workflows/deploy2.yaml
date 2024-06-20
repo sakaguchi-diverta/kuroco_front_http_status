@@ -9,9 +9,29 @@ on:
 
 jobs:
   # for Pull Request (exclude merged)
+  pre_pullreq_build:
+    name: Build(pullreq) preprocess
+    if: (github.repository == 'sakaguchi-diverta/kuroco_front_http_status' && github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/kuroco stage') && github.event.issue.pull_request != null)
+    runs-on: ubuntu-latest
+    outputs:
+      preview_deploy: 1
+      pr_base_branch: ${{ steps.get_base_branch.outputs.pr_base_branch }}
+    steps:
+      - name: "Get base branch name"
+        id: get_base_branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # PR_BASE_BRANCH=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\") | .baseRefName // \"\"")
+          # echo $PR_BASE_BRANCH
+          # echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
+
+          PR_BASE_BRANCH=$(gh pr view ${{ github.event.issue.number }} --json title,baseRefName --repo ${{ github.repository }} --jq ".baseRefName // \"\"")
+          echo $PR_BASE_BRANCH
+          echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
   pullreq_build:
     name: Build(pullreq)
-    if: (github.repository == 'sakaguchi-diverta/kuroco_front_http_status' && github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/kuroco stage') && github.event.issue.pull_request != null)
+    if: (needs.pre_pullreq_build.outputs.preview_deploy == 1 && needs.pre_pullreq_build.outputs.pr_base_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - name: "Get branch name and sha"
@@ -24,21 +44,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ steps.get_branch.outputs.branch }}
-      - name: "Get base branch name"
-        id: get_target_branch
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          PR_BASE_BRANCH=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\") | .baseRefName // \"\"")
-          echo $PR_BASE_BRANCH
-          echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
-
-          PR_NUMBER=${{ github.event.issue.number }}
-          echo $PR_NUMBER
-          REPO=${{ github.repository }}
-          echo $REPO
-          PR_DETAILS=$(gh pr view ${{ github.event.issue.number }} --json title,baseRefName --repo ${{ github.repository }})
-          echo $PR_DETAILS
   #for Push
   pushed_build:
     name: Build(pushed)
