@@ -14,7 +14,6 @@ jobs:
     if: (github.repository == 'sakaguchi-diverta/kuroco_front_http_status' && github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/kuroco stage') && github.event.issue.pull_request != null)
     runs-on: ubuntu-latest
     outputs:
-      preview_deploy: 1
       pr_base_branch: ${{ steps.get_base_branch.outputs.pr_base_branch }}
     steps:
       - name: "Get base branch name"
@@ -31,7 +30,7 @@ jobs:
           echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
   pullreq_build:
     name: Build(pullreq)
-    if: (needs.pre_pullreq_build.outputs.preview_deploy == 1 && needs.pre_pullreq_build.outputs.pr_base_branch == 'main')
+    if: (needs.pre_pullreq_build.outputs.pr_base_branch == 'main')
     runs-on: ubuntu-latest
     steps:
       - name: "Get branch name and sha"
