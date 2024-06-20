@@ -14,10 +14,17 @@ jobs:
     if: (github.repository == 'sakaguchi-diverta/kuroco_front_http_status' && github.event_name == 'issue_comment' && startsWith(github.event.comment.body, '/kuroco stage') && github.event.issue.pull_request != null)
     runs-on: ubuntu-latest
     steps:
-      - name: "Test"
+      - name: "Get branch name and sha"
+        id: get_branch
         run: |
-          echo [base ref] ${{ github.event.pull_request.base.ref }}
-
+          PR=$(curl -H "X-Kuroco-Auth: token a6e1ac02ce54195350ba7bc6242bf2d0" https://stg-marunouchi.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
+          echo "branch=$(echo $PR | jq -r '.ref')" >> $GITHUB_OUTPUT
+          echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
+          echo $PR
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ steps.get_branch.outputs.branch }}
   #for Push
   pushed_build:
     name: Build(pushed)
