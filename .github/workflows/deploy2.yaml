@@ -22,6 +22,8 @@ jobs:
           echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
       - name: "Get branch name and sha"
         id: get_target_branch
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           PR=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\")")
           echo $PR
