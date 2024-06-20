@@ -34,6 +34,7 @@ jobs:
           echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
 
           PR_NUMBER=${{ github.event.issue.number }}
+          REPO=${{ github.repository }}
           PR_DETAILS=$(gh pr view $PR_NUMBER --json title,baseRefName --repo $REPO)
           echo $PR_DETAILS
   #for Push
