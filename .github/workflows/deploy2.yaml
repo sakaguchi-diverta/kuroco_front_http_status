@@ -30,6 +30,7 @@ jobs:
           echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
   pullreq_build:
     name: Build(pullreq)
+    needs: pre_pullreq_build
     if: (needs.pre_pullreq_build.outputs.pr_base_branch == 'main')
     runs-on: ubuntu-latest
     steps:
