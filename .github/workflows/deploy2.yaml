@@ -6,7 +6,7 @@ on:
   issue_comment:
     types: [created, edited]
   workflow_dispatch:
-    branches: [ main ]
+
 jobs:
   # for Pull Request (exclude merged)
   pullreq_build:
@@ -17,41 +17,7 @@ jobs:
       - name: "Test"
         run: |
           echo [base ref] ${{ github.event.pull_request.base.ref }}
-      // - name: "Get branch name and sha"
-      //   id: get_branch
-      //   run: |
-      //     PR=$(curl -H "Authorization: token 6560f1374199e491072298fabca51c8d" https://sakaguchi.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
-      //     echo "::set-output name=branch::$(echo $PR | jq -r '.ref')"
-      //     echo "::set-output name=sha::$(echo $PR | jq -r '.sha')"
-      // - name: Checkout Repo
-      //   uses: actions/checkout@v2
-      //   with:
-      //     ref: ${{ steps.get_branch.outputs.branch }}
-      // - name: Use Node.js
-      //   uses: actions/setup-node@v1
-      //   with:
-      //     node-version: '12.x'
-      // - name: Install dependencies
-      //   run: npm ci
-      // - name: Build
-      //   run: npm run build
-      // - name: Generate
-      //   run: npm run generate
-      // - name: Archive Production Artifact
-      //   uses: actions/upload-artifact@v2
-      //   with:
-      //     name: ${{ steps.get_branch.outputs.sha }}-${{ github.run_id }}
-      //     path: dist
-      //     retention-days: 7
-      // - name: Wait for Artifact download
-      //   run: sleep 15
-      // - name: Webhook
-      //   uses: diverta/workflow-webhook@v1
-      //   env:
-      //     webhook_url: "https://sakaguchi.g.kuroco.app/direct/menu/github/"
-      //     webhook_secret: "6560f1374199e491072298fabca51c8d"
-      //     data: '{"domain":"sakaguchi.g.kuroco-front.app","pr":"${{ github.event.issue.pull_request.url }}",  "repository":"${{ github.repository }}", "run_id":"${{ github.run_id }}", "hash":"${{ steps.get_branch.outputs.sha }}"}'
-          
+
   #for Push
   pushed_build:
     name: Build(pushed)
