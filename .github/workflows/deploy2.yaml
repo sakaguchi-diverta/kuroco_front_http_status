@@ -20,6 +20,10 @@ jobs:
           PR=$(curl -H "X-Kuroco-Auth: token 6560f1374199e491072298fabca51c8d" https://sakaguchi.g.kuroco.app/direct/menu/github/?pr=${{ github.event.issue.pull_request.url }})
           echo "branch=$(echo $PR | jq -r '.ref')" >> $GITHUB_OUTPUT
           echo "sha=$(echo $PR | jq -r '.sha')" >> $GITHUB_OUTPUT
+      - name: "Get branch name and sha"
+        id: get_target_branch
+        run: |
+          PR=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\")")
           echo $PR
       - name: Checkout Repo
         uses: actions/checkout@v3
