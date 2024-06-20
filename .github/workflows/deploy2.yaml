@@ -24,13 +24,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ steps.get_branch.outputs.branch }}
-      - name: "Get branch name and sha"
+      - name: "Get base branch name"
         id: get_target_branch
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          PR=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\")")
-          echo $PR
+          PR_BASE_BRANCH=$(gh pr list --json number,headRefName,baseRefName --jq ".[] | select(.headRefName==\"${{ steps.get_branch.outputs.branch }}\") | .baseRefName // \"\"")
+          echo $PR_BASE_BRANCH
+          echo "pr_base_branch=$PR_BASE_BRANCH" >> $GITHUB_OUTPUT
+
+          PR_NUMBER=${{ github.event.issue.number }}
+          PR_DETAILS=$(gh pr view $PR_NUMBER --json title,baseRefName --repo $REPO)
+          echo $PR_DETAILS
   #for Push
   pushed_build:
     name: Build(pushed)
