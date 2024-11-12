@@ -21,7 +21,7 @@ jobs:
           echo "::set-output name=branch::$(echo $PR | jq -r '.ref')"
           echo "::set-output name=sha::$(echo $PR | jq -r '.sha')"
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           ref: ${{ steps.get_branch.outputs.branch }}
       - name: Use Node.js
@@ -35,7 +35,7 @@ jobs:
       - name: Generate
         run: npm run generate
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.get_branch.outputs.sha }}-${{ github.run_id }}
           path: dist
@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -68,7 +68,7 @@ jobs:
       - name: Generate
         run: npm run generate
       - name: Archive Production Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ github.sha }}-${{ github.run_id }}
           path: dist
