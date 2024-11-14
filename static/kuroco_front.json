@@ -1,62 +1,15 @@
 {
-    "rewrites": [
-        {
-          "source": ".*",
-          "destination": "/index.html"
-        }
-    ],
+    "rewrites": [],
     "redirects": [
-        {
-          "source": "^/404/",
-          "destination": "status:404"
-        },
-        {
-          "source": "^/ERROR/.*",
-          "destination": "status:404"
-        },
-        {
-          "source": "^/before1/",
-          "destination": "/after1/"
-        },
-        {
-          "source": "^/before2/.*",
-          "destination": "/after2/"
-        }
     ],
     "redirects_by_ie": [],
-    "proxies": [
-      {
-        "source": "/files/k/(v=[0-9]+)/sitemaps/(.*)",
-        "destination": "https://sakaguchi.g.kuroco-img.app/$1/files/user/sitemaps/$2",
-        "max_age": 0
-      },
-      {
-        "source": "/files/k/sitemaps/(.*)",
-        "destination": "https://sakaguchi.g.kuroco-img.app/files/user/sitemaps/$1",
-        "max_age": 0
-      }
-    ],
+    "proxies": [],
     "basic":["sakaguchi:kuroco"],
     "ip_restrictions":[],
     "ip_restricted_maintenance": [],
     "stale_while_revalidate":"",
     "error_page": {
-        "status404":"/index.html"
+        "status404":"/ERROR/404.html"
     },
-    "inject_data": {
-        "/": [
-            [
-                "description",
-                "content",
-                "Top Page Description"
-            ]
-        ],
-        "/errpage/": [
-            [
-                "description",
-                "content",
-                "Error Page Description"
-            ]
-        ]
-    }
+    "inject_data": {}
 }
