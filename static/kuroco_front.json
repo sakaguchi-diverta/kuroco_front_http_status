@@ -36,10 +36,10 @@
         "max_age": 0
       }
     ],
-    "basic":["sakaguchi:kuroco"],
+    "basic":[],
     "ip_restrictions":[],
     "ip_restricted_maintenance": [],
-    "stale_while_revalidate":"86400",
+    "stale_while_revalidate":"",
     "error_page": {
         "status404":"/index.html"
     },
